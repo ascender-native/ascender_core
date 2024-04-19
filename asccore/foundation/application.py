@@ -1,10 +1,10 @@
 
 import os
 from enum import Enum
-from asc.container.container import Container
-from asc.contracts.foundation.application import Application as ApplicationContract
-from asc.support.service_provider import ServiceProvider
-from asc.routing.routing_service import RoutingServiceProvider
+from asccore.container.container import Container
+from asccore.contracts.foundation.application import Application as ApplicationContract
+from asccore.support.service_provider import ServiceProvider
+from asccore.routing.routing_service import RoutingServiceProvider
 import inspect
 
 class ApplicationEnum(Enum):

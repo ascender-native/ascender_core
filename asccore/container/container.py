@@ -1,4 +1,4 @@
-from asc.container.bound_method import BoundMethod
+from asccore.container.bound_method import BoundMethod
 import inspect
 
 class Container:

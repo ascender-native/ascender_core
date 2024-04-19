@@ -1,15 +1,15 @@
-from asc.contracts.foundation.application import Application
-from asc.foundation.bootstrap import (
+from asccore.contracts.foundation.application import Application
+from asccore.foundation.bootstrap import (
     load_configuration, 
     load_environment, 
     register_providers, 
     boot_providers, 
     connection_database
 )
-from asc.console.cli_ascender import AscernderCLI
+from asccore.console.cli_ascender import AscernderCLI
 import asyncio
 import importlib.util
-from asc.main import cli
+from asccore.main import cli
 import click
 import os
 import glob
@@ -48,7 +48,7 @@ class ConsoleKernel():
         pass
 
     def load_base_commands(self) -> None:
-        self.load('asc.foundation.console.commands.*')
+        self.load('asccore.foundation.console.commands.*')
 
     def handle(self):
         asyncio.run(self.bootstrap())

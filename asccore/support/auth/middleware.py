@@ -9,7 +9,7 @@ from app.entity.user import PersonalAccessToken, User
 from .form import UserLoginRequestForm
 
 import bcrypt
-from asc.contracts.foundation.application import Application
+from asccore.contracts.foundation.application import Application
 
 class JWTAuthentication():
     def __init__(self, secret_key: str, algorithm: str, token_expire_minutes: int, user_model: Model):

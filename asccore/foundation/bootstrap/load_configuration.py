@@ -1,6 +1,6 @@
 import os
 
-from asc.contracts.foundation.application import Application
+from asccore.contracts.foundation.application import Application
 from pathlib import Path, PosixPath
 
 class LoadConfiguration:

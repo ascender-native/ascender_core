@@ -1,4 +1,4 @@
-from asc.main import cli
+from asccore.main import cli
 import click
 import os
 import subprocess

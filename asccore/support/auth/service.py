@@ -1,6 +1,6 @@
-from asc.contracts.foundation.application import Application
-from asc.support.service_provider import ServiceProvider
-from asc.main import config
+from asccore.contracts.foundation.application import Application
+from asccore.support.service_provider import ServiceProvider
+from asccore.main import config
 from .middleware import JWTAuthentication
 from .model import User
 

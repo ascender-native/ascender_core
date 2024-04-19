@@ -1,4 +1,4 @@
-from asc.contracts.foundation.application import Application
+from asccore.contracts.foundation.application import Application
 from tortoise import Tortoise
 import asyncio
 

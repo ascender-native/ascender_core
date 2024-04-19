@@ -1,4 +1,4 @@
-from asc.database.model import Model
+from asccore.database.model import Model
 from tortoise import fields
 from tortoise.queryset import QuerySet
 from tortoise.expressions import Q

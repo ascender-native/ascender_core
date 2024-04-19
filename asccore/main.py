@@ -1,5 +1,5 @@
-from asc.foundation.application import Application
-from asc.console.cli_ascender import AscernderCLI 
+from asccore.foundation.application import Application
+from asccore.console.cli_ascender import AscernderCLI 
 import click
 
 app = Application()

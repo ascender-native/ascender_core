@@ -1,6 +1,6 @@
 
-from asc.support.service_provider import ServiceProvider
-from asc.database.manager import DatabaseManager
+from asccore.support.service_provider import ServiceProvider
+from asccore.database.manager import DatabaseManager
 import os 
 import itertools
 

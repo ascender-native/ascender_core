@@ -1,9 +1,9 @@
-from asc.contracts.foundation.application import Application
-from asc.support.service_provider import ServiceProvider
-from asc.contracts.kernel import Kernel as KernelContract
+from asccore.contracts.foundation.application import Application
+from asccore.support.service_provider import ServiceProvider
+from asccore.contracts.kernel import Kernel as KernelContract
 from fastapi import FastAPI, APIRouter, Depends
-from asc.routing.router import HttpRoute, RouteList
-from asc.foundation.application import Application
+from asccore.routing.router import HttpRoute, RouteList
+from asccore.foundation.application import Application
 from fastapi.responses import JSONResponse
 from fastapi.datastructures import Default
 

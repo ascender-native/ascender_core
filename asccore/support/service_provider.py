@@ -1,5 +1,5 @@
 from abc import ABC
-from asc.contracts.foundation.application import Application
+from asccore.contracts.foundation.application import Application
 
 class ServiceProvider(ABC):
     app: Application
@@ -87,7 +87,7 @@ class DefaultServiceProviders():
     _providers: []
 
     def __init__(self) -> None:
-        from asc.database.providers.db_service import DatabaseServiceProvider
+        from asccore.database.providers.db_service import DatabaseServiceProvider
         
         self._providers = [
             DatabaseServiceProvider,

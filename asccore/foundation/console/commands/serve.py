@@ -1,8 +1,8 @@
 import click
 import subprocess
-from asc.main import cli
+from asccore.main import cli
 from click.core import Context, Option
-from asc.main import config
+from asccore.main import config
 
 def flag_with_value(ctx: Context, param: Option, value):
     param.name = param.opts[0]
@@ -30,4 +30,4 @@ def serve(**args):
 
     print('adasdasdassd')
 
-    subprocess.run(['uvicorn', 'ascender:serve']+flags+params)
+    subprocess.run(['uvicorn', 'asccoreender:serve']+flags+params)

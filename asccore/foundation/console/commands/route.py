@@ -1,9 +1,9 @@
 import click
-from asc.main import cli, app
-from asc.contracts.kernel import Kernel as KernelContract
+from asccore.main import cli, app
+from asccore.contracts.kernel import Kernel as KernelContract
 from fastapi.routing import APIRouter, APIRoute
 from tabulate import tabulate
-from asc.routing.cli import RouteStyle
+from asccore.routing.cli import RouteStyle
 
 @cli.command("route.list")
 def route_list():

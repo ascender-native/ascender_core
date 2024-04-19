@@ -2,7 +2,7 @@ from abc import ABC
 from .router import Router
 from pathlib import Path
 import os
-from asc.contracts.routing.http_router import HttpRouter
+from asccore.contracts.routing.http_router import HttpRouter
 from fastapi import APIRouter
 
 class AbstractRouteList(ABC):

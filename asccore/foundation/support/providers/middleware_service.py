@@ -1,6 +1,6 @@
-from asc.support.service_provider import ServiceProvider
+from asccore.support.service_provider import ServiceProvider
 
-from asc.main import config
+from asccore.main import config
 
 class MiddlewareServiceProvider(ServiceProvider):
     http_middlewares: dict = {}

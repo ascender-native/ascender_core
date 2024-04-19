@@ -1,5 +1,5 @@
-from asc.support.service_provider import ServiceProvider
-from asc.routing.router import Route, RouteList, Router
+from asccore.support.service_provider import ServiceProvider
+from asccore.routing.router import Route, RouteList, Router
 
 class RoutingServiceProvider(ServiceProvider):   
 

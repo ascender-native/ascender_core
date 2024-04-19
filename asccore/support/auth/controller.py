@@ -3,9 +3,9 @@ from app.entity.user import User
 from app.entity.user import PersonalAccessToken
 
 from fastapi import HTTPException
-from asc.support.auth.middleware import JWTAuthentication
-from asc.support.auth.resource import *
-from asc.main import app
+from asccore.support.auth.middleware import JWTAuthentication
+from asccore.support.auth.resource import *
+from asccore.main import app
 from tortoise.expressions import Q
 
 import random

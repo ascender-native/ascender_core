@@ -2,10 +2,14 @@ from asccore.main import cli
 import click
 import os
 import subprocess
+import inflection
 
 @cli.command("make.controller")
-@click.argument('controller_name')
-def generate_controller_file(controller_name):
+@click.argument('name')
+@click.argument('class_name', required=False)
+def generate_controller_file(name, class_name=None):
+    class_name = class_name or inflection.camelize(name)
+    file_name = inflection.underscore(name)
     # Определяем путь к директории для контроллеров
     controllers_dir = os.path.join("app", "http", "controllers")
     
@@ -14,11 +18,11 @@ def generate_controller_file(controller_name):
         os.makedirs(controllers_dir)
     
     # Формируем полный путь к файлу контроллера
-    controller_file = os.path.join(controllers_dir, f"{controller_name}.py")
+    controller_file = os.path.join(controllers_dir, f"{file_name}.py")
     
     # Генерируем содержимое файла контроллера
     content = f"""
-class {controller_name}():
+class {class_name}():
     pass
 """
     
@@ -26,7 +30,34 @@ class {controller_name}():
     with open(controller_file, "w") as file:
         file.write(content)
     
-    print(f"Контроллер {controller_name} успешно создан по пути {controller_file}")
+    print(f"Контроллер {class_name} успешно создан по пути {controller_file}")
+
+@cli.command("make.provider")
+@click.argument('name')
+def generate_provider_file(name):
+    class_name = inflection.camelize(name)
+    file_name = inflection.underscore(name)
+    # Определяем путь к директории для контроллеров
+    dir_path = os.path.join("app", "http", "provider")
+    
+    # Создаем директорию для контроллера, если она не существует
+    if not os.path.exists(dir_path):
+        os.makedirs(dir_path)
+    
+    # Формируем полный путь к файлу контроллера
+    file_path = os.path.join(dir_path, f"{file_name}.py")
+    
+    # Генерируем содержимое файла контроллера
+    content = f"""
+                class {class_name}():
+                    pass
+                """
+    
+    # Записываем содержимое в файл
+    with open(file_path, "w") as file:
+        file.write(content)
+    
+    print(f"Провайдер {class_name} успешно создан по пути {file_path}")
 
 
 @cli.command("install")

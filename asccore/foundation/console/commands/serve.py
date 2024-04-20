@@ -30,4 +30,4 @@ def serve(**args):
 
     print('adasdasdassd')
 
-    subprocess.run(['uvicorn', 'asccoreender:serve']+flags+params)
+    subprocess.run(['uvicorn', 'ascender:serve']+flags+params)

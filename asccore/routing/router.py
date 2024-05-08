@@ -99,10 +99,10 @@ class RouteBuild:
                 return route
         return None
     
-    def url(self, name, **params):
+    def url(self, name, domen=None, **params):
         from asccore.main import config
         # Retrieve the base URL from the configuration.
-        base_url: str = self.make_full_url(config('app.url'))
+        base_url: str = domen or self.make_full_url(config('app.url'))
         # Fetch the route object by name, assuming it exists.
         route = self.route(name)
 

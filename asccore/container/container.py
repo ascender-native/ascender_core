@@ -1,5 +1,9 @@
 from asccore.container.bound_method import BoundMethod
 import inspect
+from typing import TypeVar
+
+ABSTRACT = TypeVar('ABSTRACT')
+DEFAULT = TypeVar('DEFAULT')
 
 class Container:
     bindings:dict
@@ -41,7 +45,7 @@ class Container:
             return concrete
         return closure()
 
-    def make(self, abstract, *params, default=None):
+    def make(self, abstract: ABSTRACT, *params, default=DEFAULT|None) -> ABSTRACT|DEFAULT|None:
         return self.resolve(abstract, params, default)
     
     def resolve(self, abstract, params=None, default=None):

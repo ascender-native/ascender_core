@@ -1,5 +1,8 @@
-from abc import ABC
 from asccore.contracts.foundation.application import Application
+from asccore.contracts.kernel import Kernel as KernelContract
+
+from fastapi import FastAPI
+from abc import ABC
 
 class ServiceProvider(ABC):
     app: Application
@@ -12,6 +15,11 @@ class ServiceProvider(ABC):
 
     def __init__(self, app: Application):
         self.app = app
+        self.kernel: KernelContract = self.app.make(KernelContract)
+        if hasattr(self.kernel, 'server'):
+            self.server: FastAPI = self.kernel.server
+        else:
+            self.server = None
 
     def register(self) -> None:
         pass
@@ -81,16 +89,18 @@ class ServiceProvider(ABC):
     @staticmethod
     def default_list() -> list:
         return DefaultServiceProviders().get_providers()
-    
-
 class DefaultServiceProviders():
     _providers: []
 
     def __init__(self) -> None:
         from asccore.database.providers.db_service import DatabaseServiceProvider
+        from asccore.database.providers.redis_service import RedisServiceProvider
+        from asccore.queue.queue_service import QueueServiceProvider
         
         self._providers = [
             DatabaseServiceProvider,
+            RedisServiceProvider,
+            QueueServiceProvider,
         ]
 
     def get_providers(self) -> list:

@@ -15,13 +15,13 @@ class DatabaseManager():
         self._app = app
         self._reconnector = lambda connection: self.reconnect(connection.get_name_with_read_write_type())
 
-    def reconnect(self, name = None):
+    def reconnect(self, name: str = None):
         # TODO: disconnect
         if not name in self._connections:
             return self.connection(name)
         return self.refresh_connections(name)
     
-    def refresh_connections(self, name):
+    def refresh_connections(self, name: str = None):
         database, type = self._parse_connection_name(name)
         self._connections[name] = self.configure(
             self.make_connection(database), self.get_db_name(name))
@@ -65,10 +65,15 @@ class DatabaseManager():
         else:
             obj = await Tortoise.init(
                 db_url=db_type+'://{username}:{password}@{host}:{port}/{database}'.format(**connecton),
-                modules={'models': self._models}
+                modules={'models': self._models},
             )
+        
         await Tortoise.generate_schemas()
-        return obj
+        return Tortoise.get_connection('default')
+    
+    def transaction(self, name: str = None):
+        name = name or "default"
+        return Tortoise.get_connection(name)._in_transaction()
 
     def _parse_connection_name(self, name: str):
         name = name or self.get_default_connection()

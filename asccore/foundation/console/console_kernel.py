@@ -7,12 +7,11 @@ from asccore.foundation.bootstrap import (
     connection_database
 )
 from asccore.console.cli_ascender import AscernderCLI
+from asccore.main import cli
+
 import asyncio
 import importlib.util
-from asccore.main import cli
 import click
-import os
-import glob
 
 class ConsoleKernel():
     _app: any
@@ -35,11 +34,16 @@ class ConsoleKernel():
         self._app: Application = app
         self.routes: list = []
         self._router = None
+        self.loop = asyncio.get_event_loop()
 
     async def bootstrap(self):
         await self._app.bootstrap_with(self.get_bootstrappers())
         self.load_base_commands()
         self.commands()
+
+    def handle(self):
+        self.loop.run_until_complete(self.bootstrap())
+        cli()
 
     def get_bootstrappers(self):
         return self.__bootstrappers
@@ -50,9 +54,6 @@ class ConsoleKernel():
     def load_base_commands(self) -> None:
         self.load('asccore.foundation.console.commands.*')
 
-    def handle(self):
-        asyncio.run(self.bootstrap())
-        cli()
 
     def getCLI(self) -> AscernderCLI:
         if not hasattr(self, 'cli'):

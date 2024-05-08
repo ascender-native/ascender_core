@@ -1,9 +1,9 @@
 from asccore.contracts.foundation.application import Application
 from asccore.support.service_provider import ServiceProvider
-from asccore.contracts.kernel import Kernel as KernelContract
-from fastapi import FastAPI, APIRouter, Depends
 from asccore.routing.router import HttpRoute, RouteList
 from asccore.foundation.application import Application
+
+from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
 from fastapi.datastructures import Default
 
@@ -13,11 +13,6 @@ class RouteServiceProvider(ServiceProvider):
     
     def __init__(self, app: Application):
         super().__init__(app)
-        self.kernel = self.app.make(KernelContract)
-        if hasattr(self.kernel, 'server'):
-            self.server: FastAPI = self.kernel.server
-        else:
-            self.server = None
 
     def routers(self, routers, prefix=""):        
         for router in routers:

@@ -28,6 +28,4 @@ def serve(**args):
     if '--port' not in params:
         params += ['--port', config('app.port')]
 
-    print('adasdasdassd')
-
     subprocess.run(['uvicorn', 'ascender:serve']+flags+params)

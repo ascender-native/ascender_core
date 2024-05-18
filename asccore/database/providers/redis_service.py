@@ -1,6 +1,7 @@
 from asccore.support.service_provider import ServiceProvider
 
 from redis import Redis
+from redis.asyncio import Redis as ARedis
 
 from asccore.main import config
 
@@ -12,6 +13,7 @@ class RedisServiceProvider(ServiceProvider):
         username = config('database.redis.default.username')
         password = config('database.redis.default.password')
         self.app.bind(Redis, lambda: Redis(host, port, db, password, username=username))
+        self.app.bind(ARedis, lambda: ARedis(host=host, port=port, db=db, password=password, username=username))
 
     def boot(self):
         pass

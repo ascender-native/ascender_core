@@ -12,7 +12,8 @@ class UserLoginRequestForm(BaseModel):
         return values
 
     class Config:
-        orm_mode = True
+        from_attributes = True
+        # orm_mode = True
 
 class UserRegisterRequestForm(BaseModel):
     username: str = Field(default=None, nullable=True, min_length=8)

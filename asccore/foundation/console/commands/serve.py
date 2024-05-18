@@ -10,10 +10,13 @@ def flag_with_value(ctx: Context, param: Option, value):
 
 @cli.command("serve")
 @click.option('--reload', is_flag=True)
+@click.option('--proxy-headers', is_flag=True)
+
 @click.option('--port', callback=flag_with_value)
 @click.option('--host', callback=flag_with_value)
 @click.option('--ssl-keyfile', callback=flag_with_value)
 @click.option('--ssl-certfile', callback=flag_with_value)
+@click.option('--forwarded-allow-ips', callback=flag_with_value)
 def serve(**args):
     flags = []
     params = []

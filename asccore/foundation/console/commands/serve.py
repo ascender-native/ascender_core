@@ -11,9 +11,8 @@ def flag_with_value(ctx: Context, param: Option, value):
 @cli.command("serve")
 @click.option('--reload', is_flag=True)
 @click.option('--proxy-headers', is_flag=True)
-
-@click.option('--port', callback=flag_with_value)
-@click.option('--host', callback=flag_with_value)
+@click.option('--port', callback=flag_with_value, default=config('app.port'))
+@click.option('--host', callback=flag_with_value, default=config('app.host'))
 @click.option('--ssl-keyfile', callback=flag_with_value)
 @click.option('--ssl-certfile', callback=flag_with_value)
 @click.option('--forwarded-allow-ips', callback=flag_with_value)
@@ -27,10 +26,16 @@ def serve(**args):
         elif value != None:
             params.append(arg)
             params.append(value)
+            
+    if "--proxy_headers" in flags:
+        i = flags.index("--proxy_headers")
+        flags[i] = "--proxy-headers"
 
     if '--host' not in params:
         params += ['--host', config('app.host')]
     if '--port' not in params:
         params += ['--port', config('app.port')]
+        
+    print(['uvicorn', 'ascender:serve']+flags+params)
 
     subprocess.run(['uvicorn', 'ascender:serve']+flags+params)
